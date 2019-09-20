@@ -1,0 +1,220 @@
+Fix 3
+Degree
+1→N
+1→E
+⁻1→S
+⁻1→W
+Disp "LAT1plotsquare
+Prompt A
+Disp "LAT1'
+Prompt B
+Disp "LAT1N/S
+Prompt C
+Disp "LONG1plotsquare
+Prompt D
+Disp "LONG1'
+Prompt F
+Disp "LONG1E/W
+Prompt G
+Disp "COURSE
+Prompt H
+Disp "DIST
+Prompt I
+If H<90
+1→J
+If H>90
+2→J
+If H>180
+3→J
+If H>270
+4→J
+ClrHome
+If J=1
+Then
+H→K
+Output(2,6,"CT=C
+End
+If J=2
+Then
+180-H→K
+Output(2,4,"180-CT=C
+End
+If J=3
+Then
+H-180→K
+Output(2,5,"CT-180=C
+End
+If J=4
+Then
+360-H→K
+Output(2,4,"360-CT=C
+End
+Output(4,7,K
+Output(4,2,"C=
+If J=1 or J=2
+Output(4,14,"E
+If J=3 or J=4
+Output(4,14,"W
+If J=1 or J=4
+Output(4,5,"N
+If J=2 or J=3
+Output(4,5,"S
+Pause 
+ClrHome
+Output(2,2,"DISTcos(C)/60=I
+Output(4,4,I
+Output(5,2,"* cos(
+Output(5,8,K
+Output(6,2,"============
+Icos(K→L
+Output(7,4,L
+Pause 
+ClrHome
+Output(2,4,L
+Output(3,2,"/ 60
+L/60→L
+Output(4,2,"============
+Output(5,4,L
+Output(5,2,"I=
+B/60+A→M
+Pause 
+ClrHome
+Output(1,2,"LAT1 I=LAT2
+If (C=1 and J=1) or (C=⁻1 and J=2) or (C=⁻1 and J=3) or (C=1 and J=4)
+Then
+M+L→O
+Output(3,2,"+
+Output(1,6,"+
+If C=1
+Output(2,11,"N
+If C=⁻1
+Output(2,11,"S
+If C=1
+Output(3,11,"N
+If C=⁻1
+Output(3,11,"S
+Else
+M-L→O
+Output(3,2,"-
+Output(1,6,"-
+If C=1
+Output(3,11,"S
+If C=⁻1
+Output(3,11,"N
+End
+F/60+D→P
+Output(4,2,"============
+Output(2,4,M
+Output(3,4,L
+Output(5,4,abs(O)
+If C=1
+Then
+Output(2,11,"N
+Else
+Output(2,11,"S
+End
+If O=M-L and (L>M and C=1) or (M>L and C=⁻1
+Then
+Output(5,11,"S
+Else
+Output(5,11,"N
+End
+abs(O)→O
+7915.704468log(tan(45+(O/2)))-23.268932sin(O)-.0525sin(O)^3-.000213sin(O)^5→Q
+7915.704468log(tan(45+(M/2)))-23.268932sin(M)-.0525sin(M)^3-.000213sin(M)^5→R
+Pause 
+ClrHome
+Output(1,1,"PLUG LAT1 INTO
+Output(2,1,"TABLE 6, M1=
+Output(3,2,R
+Output(5,1,"PLUG LAT2 INTO
+Output(6,1,"TABLE 6, M2=
+Output(7,2,Q
+Pause 
+ClrHome
+Menu("M1/2 SETTINGS","AUTO",5,"MANUAL",6)
+Lbl 6
+Disp "SET M1
+Prompt R
+Disp "SET M2
+Prompt Q
+Goto 5
+Lbl 5
+ClrHome
+Output(1,4,"M1 M2=M
+Output(4,3,Q
+Output(3,3,R
+Output(5,2,"============
+If (C=1 and J=1) or (C=1 and J=2 and M>L) or (C=⁻1 and J=2) or (C=1 and J=3 and M>L) or (C=⁻1 and J=3) or (C=1 and J=4) or (C=⁻1 and J=4 and M>L)
+Then
+R-Q→T
+Output(1,6,"-
+Output(4,1,"-
+Else
+Q+R→T
+Output(1,6,"+
+Output(4,1,"+
+End
+Output(6,3,T
+abs(T)→T
+Output(8,2,"M=
+Output(8,4,T
+Pause 
+ClrHome
+Ttan(K)→U
+Output(1,4,"Mtan(C)=DLO
+Output(3,4,T
+Output(4,2,"* tan(
+Output(4,8,K
+Output(5,3,"============
+Output(6,1,"DLO=
+Output(6,5,U
+Output(8,1,"DLO/60=
+U/60→U
+Output(8,8,U
+Pause 
+ClrHome
+Output(1,1,"DLO LONG1=LONG2
+If (G=1 and J=1) or (G=1 and J=2) or (G=⁻1 and J=3) or (G=⁻1 and J=4)
+Then
+P+U→V
+Output(1,4,"+
+Output(4,1,"+
+Else
+P-U→V
+Output(1,4,"-
+Output(4,1,"-
+End
+abs(V)→W
+Output(5,2,"============
+Output(6,1,"LONG2=
+Output(6,7,W
+Output(3,3,P
+Output(4,3,U
+Pause 
+ClrHome
+If W>180
+Then
+180-(W-180)→W
+Output(2,3,"180-(DLO-180)
+Output(3,1,"=DLO
+Output(5,3,W
+Output(7,3,"CROSSED IDL
+End
+Float
+ClrDraw
+Line(⁻1,7,5,7
+Line(5,7,⁻1,⁻4
+Line(⁻1,⁻4,⁻1,7
+Line(3,4,⁻1,4
+Text(44,40,"P1
+Text(2,50,"DLO
+Text(12,50,"P
+Text(28,57,"D
+Text(25,44,"L
+Text(14,37,"M
+Text(15,65,"P2
+Text(55,5,"EXAMPLE MERK TRIANGLE
+Pause 
+ClrDraw
+ClrHome
