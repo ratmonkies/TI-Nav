@@ -1,0 +1,78 @@
+Lbl R
+0→X
+ClrHome
+Input "LAT1D",A
+Input "LAT1M",B
+Input "LAT1N/S",C
+Input "LONG1D",D
+Input "LONG1M",F
+Input "LONG1E/W",G
+Input "LAT2D",H
+Input "LAT2M",I
+Input "LAT2N/S",J
+Input "LONG2D",K
+Input "LONG2M",L
+Input "LONG2E/W",M
+B/60+A→O
+I/60+H→P
+If C≠J
+⁻P→P
+F/60+D→Q
+L/60+K→R
+If G=M
+1→θ
+If G≠M
+2→θ
+If θ=1
+Q-R→T
+If θ=1
+abs(T)→T
+If θ=2
+Q+R→T
+If T<180 and θ=2
+1→X
+If T>180 and θ=2
+2→X
+If T>180 and θ=2
+360-T→T
+60cos⁻¹((sin(O)sin(P))+cos(O)cos(P)cos(T))→U
+tan⁻¹((sin(T))/(cos(O)tan(P)-sin(O)cos(T)))→V
+If V<0
+180+V→V
+If θ=1 and Q>R and G=⁻1
+1→Z
+If θ=1 and R>Q and G=⁻1
+⁻1→Z
+If θ=1 and Q>R and G=1
+⁻1→Z
+If θ=1 and R>Q and G=1
+1→Z
+If G>M and X=1
+⁻1→Z
+If G>M and X=2
+1→Z
+If G<M and X=1
+1→Z
+If G<M and X=2
+⁻1→Z
+
+If C=1 and Z=1
+V→Y
+If C=1 and Z=⁻1
+360-V→Y
+If C=⁻1 and Z=1
+180-V→Y
+If C=⁻1 and Z=⁻1
+180+V→Y
+Fix 3
+ClrHome
+Disp "DIST"
+Output(1,7,U)
+Disp "DLO"
+Output(2,7,T)
+Disp "C"
+Output(3,7,V)
+Disp "CN"
+Output(4,7,Y)
+Disp "V3.4.1"
+Float
