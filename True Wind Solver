@@ -1,0 +1,5 @@
+Input"COG",A
+Input"SOG",B
+Input"WINDA",C
+Input"WINDS",D
+If A>0 and A<90
