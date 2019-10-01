@@ -1,5 +1,113 @@
-Input"COG",A
-Input"SOG",B
-Input"WINDA",C
-Input"WINDS",D
+Input "COG",A
+Input "SOG",B
+Input "AWA",C
+Input "AWS",D
 If A>0 and A<90
+1→Z
+If A>90 and A<180
+2→Z
+If A>180 and A<270
+3→Z
+If A>270 and A<360
+4→Z
+If C>0 and C<90
+1→W
+If C>90 and C<180
+2→W
+If C>180 and C<270
+3→W
+If C>270 and C<360
+4→W
+If Z=1 or Z=3
+Then
+abs(Bsin(A))→X
+abs(Bcos(A))→Y
+End
+If Z=2 or Z=4
+Then
+abs(Bsin(A))→X
+abs(Bcos(A))→Y
+End
+If W=1 or W=3
+Then
+abs(Dsin(C))→U
+abs(Dcos(C))→V
+End
+If W=2 or W=4
+Then
+abs(Dsin(C))→U
+abs(Dcos(C))→V
+End
+If Z=W
+Then
+1→θ
+V-Y→T
+U-X→S
+End
+If (Z=1 and W=2) or (Z=3 and W=4)
+Then
+2→θ
+U-X→S
+V+Y→T
+End
+If (Z=2 and W=3) or (Z=1 and W=4)
+Then
+3→θ
+X+U→S
+V-Y→T
+End
+If (Z=1 and W=3) or (Z=2 and W=4)
+Then
+4→θ
+X+U→S
+V+Y→T
+End
+0→E
+If TS>0 and T>0
+Then
+If θ=1
+0→E
+If θ=2
+90→E
+If θ=3
+180→E
+If θ=4
+270→E
+End
+Disp E
+Pause 
+Disp E
+Pause 
+If TS>0 and T<0
+Then
+If θ=1
+180→E
+If θ=2
+270→E
+If θ=3
+0→E
+If =4
+90→E
+End
+If TS<0 and T>0
+Then
+If θ=1
+270→E
+If θ=2
+180→E
+If θ=3
+90→E
+If θ=4
+0→E
+End
+abs(S)→S
+abs(T)→T
+If T≠0
+tan⁻¹(S/T)→F
+ClrHome
+Disp "TRUE SPEED
+Disp D
+F+E→G
+√(S^2+T^2)→H
+Disp "TRUE °
+Disp G
