@@ -4,14 +4,6 @@ Degree
 ⁻1→W
 ⁻1→S
 Input "LAT1°",A
-If A=246669
-Then
-ClrHome
-Output(5,5,"MADE BY
-Output(6,2,"ANDREW PADGETT
-Output(4,5,"V2.3.07
-Prompt A
-End
 Disp "LAT1'
 Prompt B
 Disp "LAT1N/S
